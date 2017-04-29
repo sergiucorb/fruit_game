@@ -21,22 +21,22 @@ $(function () {
             startInterval();
         };
     });
-    if ($("#fruit1").position().top >= 400 + "px") {
-        $("#container #trialsleft  img:last-child").remove();
-    };
+
     function addHearts() {
         for (i = 0; i < trialsleft; i++) {
             $("#trialsleft").append('<img src="images/heart.png" class="life">');
         };
     };
     function startAction() {
-        $("#fruit1").show();
+       
         $("#fruit1").css({
             position: "absolute",
             left: Math.floor((Math.random() * 530)) + "px",
             top: -100 + "px"
         });
         chooseFruit();
+        $("#fruit1").show();
+        
     };
     function startInterval() {
         action = setInterval(function () {
@@ -53,10 +53,17 @@ $(function () {
         }, 1700);
     };
     $("#fruit1").mouseover(function () {
+
         trialsleft = 3;
         score++;
         $("#scorevalue").html(score);
+        $("#audioSlice")[0].play();
         $(this).hide();
+        
+
+
+
+
     });
     function chooseFruit() {
         $("#fruit1").attr("src", "images/" + fruits[Math.floor((Math.random() * 8))] + ".png");
@@ -75,4 +82,6 @@ $(function () {
         $("#fruit1").hide();
         clearInterval(action);
     };
+
+    
 });
