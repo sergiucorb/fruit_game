@@ -28,15 +28,15 @@ $(function () {
         };
     };
     function startAction() {
-       
+
         $("#fruit1").css({
             position: "absolute",
             left: Math.floor((Math.random() * 530)) + "px",
             top: -100 + "px"
         });
+
         chooseFruit();
         $("#fruit1").show();
-        
     };
     function startInterval() {
         action = setInterval(function () {
@@ -53,17 +53,13 @@ $(function () {
         }, 1700);
     };
     $("#fruit1").mouseover(function () {
-
         trialsleft = 3;
         score++;
         $("#scorevalue").html(score);
         $("#audioSlice")[0].play();
-        $(this).hide();
-        
-
-
-
-
+        clearInterval(action);
+        $(this).hide("explode", 500);
+        setTimeout(startAction(), 500);
     });
     function chooseFruit() {
         $("#fruit1").attr("src", "images/" + fruits[Math.floor((Math.random() * 8))] + ".png");
@@ -82,6 +78,4 @@ $(function () {
         $("#fruit1").hide();
         clearInterval(action);
     };
-
-    
 });
